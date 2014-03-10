@@ -9,7 +9,7 @@ defmodule Suppy.SupervisorB do
     IO.puts "Starting #{__MODULE__} (#{inspect self})..."
 
     children = [
-      worker(Suppy.SupervisorD, []),
+      supervisor(Suppy.SupervisorD, []),
       worker(Suppy.ServerB, [])
     ]
 

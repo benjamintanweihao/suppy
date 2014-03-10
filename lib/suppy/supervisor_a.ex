@@ -9,8 +9,8 @@ defmodule Suppy.SupervisorA do
     IO.puts "Starting #{__MODULE__} (#{inspect self})..."
 
     children = [
-      worker(Suppy.SupervisorB, []),
-      worker(Suppy.SupervisorC, []),
+      supervisor(Suppy.SupervisorB, []),
+      supervisor(Suppy.SupervisorC, []),
     ]
 
     supervise(children, strategy: :one_for_one)
