@@ -2,7 +2,7 @@ defmodule Suppy.SupervisorC do
   use Supervisor.Behaviour
 
   def start_link do
-    :supervisor.start_link({:global, __MODULE__}, __MODULE__, [])
+    :supervisor.start_link({:local, __MODULE__}, __MODULE__, [])
   end
 
   def start_child do
@@ -17,6 +17,10 @@ defmodule Suppy.SupervisorC do
     ]
 
     supervise(children, strategy: :simple_one_for_one)
+  end
+
+  def crash do
+    Process.exit(Process.whereis(__MODULE__), :kill)
   end
 
 end
